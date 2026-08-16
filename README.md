@@ -44,6 +44,8 @@ Cherry Studio → 设置 → MCP 服务器 → 导入这段 JSON（把路径换�
 
 打开开关，工具列表出现 11 个工具即成功。Windows 用户注意：`command` 最好写 python.exe 全路径——`WindowsApps` 里那个 0 字节的商店占位符会把你送到微软商店，而不是茶汤。
 
+然后在相应位置部署SKILL.md
+
 ## 开箱三步
 
 1. **搬家**：「我搬到了外地」→ 把作者的 107 款茶清空（确认两次才动手，不误伤）
@@ -71,3 +73,79 @@ Cherry Studio → 设置 → MCP 服务器 → 导入这段 JSON（把路径换�
 ---
 
 **仅供参考。** 茶是你的茶，嘴是你的嘴，参数是理论的，好喝才算数。程序不会泡茶，它只会抛一枚比较讲道理的硬币。
+
+# 🍵 Man! What Tea Today? · tea-planner MCP
+
+> **With no reason to hold a bowl of tea, I send it to those who love tea.** — Bai Juyi
+> **Brood not over the old country with old friends; light a new fire and try the new tea. Poetry and wine, while time is still ours.** — Su Shi
+
+Here's how it started: the tea collection kept growing until opening the cabinet meant five minutes of blank staring, followed by grabbing whichever box was closest. Tea getting damp? My fault. Choice paralysis? Also my fault. So I made the program take the blame.
+
+Thus this MCP living inside Cherry Studio — "What Tea Today?". It ships with brewing parameters for 107 teas (green, oolong, dark, black, white, yellow, jasmine, plus a bunch of oddities that defy categorization). Every day it flips a coin for you — but a coin with reasons: weighted by season, time of day, what you drank recently, and how long each tea has been gathering dust. Ripe pu-erh can still win in summer (just less likely), and late nights won't be limited to herbal tisanes — the rules are soft. No tea gets a death sentence.
+
+## The 11 tools
+
+| Tool | What you say |
+|---|---|
+| `recommend` | What should I drink today? |
+| `coldbrew_recommend` | What should I cold-brew today? |
+| `add_tea` | I bought Longjing, Tieguanyin, Lapsang Souchong (batch supported) |
+| `remove_tea` | I finished the Biluochun |
+| `clear_inventory` | I moved to another city (one-click wipe — don't inherit the author's tea cabinet) |
+| `set_brewer` | My teapot is 300ml / my cold-brew pitcher is now 2L |
+| `review` | Too weak / too bitter / warehouse musty / over-rinsed / stewed / turned sour / aroma gone |
+| `record` / `undo_record` / `history` | I drank X / undo that / what have I been drinking |
+
+## Deploy (Cherry Studio, two minutes)
+
+Requires Python 3.10+:
+
+```bash
+pip install "mcp[cli]"
+```
+
+Cherry Studio → Settings → MCP Servers → Import this JSON (swap in your own path):
+
+```json
+{
+  "mcpServers": {
+    "tea-planner": {
+      "command": "python",
+      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "env": {}
+    }
+  }
+}
+```
+
+Flip the switch, and once 11 tools show up you're done. Windows users: write the full path to python.exe — the 0-byte store stub in `WindowsApps` will send you to the Microsoft Store, not to tea.
+
+Prefer not to install Python? Drop `SKILL.md` into Cherry Studio's Skills folder for a prompt-only fallback (no persistence, but works out of the box).
+
+## Three steps after install
+
+1. **Move in**: say "I moved to another city" — wipes the author's 107 teas (double confirmation, no accidents)
+2. **Stock up**: "I bought Longjing, Dahongpao, aged white tea" — batch import, parameters auto-assigned by category
+3. **Drink**: "What should I drink today?" — let the program do the agonizing
+
+## About the brewing method (read before you pour)
+
+**This is not gongfu style.** No gaiwan, no flash infusions, no "first steep aroma, second steep water, third steep flavor". The author brews with a **400ml teapot + 1.6L cold-brew pitcher and TDS-20 purified water**: fill once, steep four to five minutes, pour it all out at once, separate leaf from liquor — closer to tea evaluation cupping and the English teapot. Every dose, temperature, and time is calibrated for that setup.
+
+Different gear? Say "my teapot is 500ml" and the leaf dose scales with the water ratio automatically — temperature and time stay put. Same for cold brew.
+
+## Review: teaching the tea to suit you
+
+Theoretical parameters are just a starting point. Vendors' batches, warehouse years, and storage will all push a tea off its spec sheet. If it tastes wrong, say so:
+
+- **Too weak / too strong / astringent** → auto-tunes dose, time, temperature
+- **Warehouse musty / over-rinsed** → adjusts the rinse routine (sheng pu-erh default: 1 quick rinse + 1 slow rinse + 2 min airing; shou pu-erh / liubao / border brick: 2 quick + 1 slow + 2 min airing + 1 quick)
+- **Stewed / aroma fading** → lid on or lid off
+- **Turned sour / aroma gone** → temperature down 3°C
+- Overshot? Say "reset XX" and it's back to the theory
+
+Everything lives in `state.json` next to the script. Back up that one file and your taste moves house with you.
+
+---
+
+**For reference only.** Your tea is your tea, your mouth is your mouth, the parameters are theoretical, and only the taste counts. The program can't brew — it just flips a fairly sensible coin.
