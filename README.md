@@ -1,6 +1,7 @@
 # 🍵 今天喝什么 · tea-planner MCP
 
-> **无由持一碗，寄与爱茶人。** —— 白居易/n
+> **无由持一碗，寄与爱茶人。** —— 白居易
+> 
 > **休对故人思故国，且将新火试新茶。诗酒趁年华。** —— 苏轼
 
 事情是这样的：家里茶越来越多，多到每次打开柜子要发呆五分钟，最后拿的还是离手最近的那一盒。茶叶受潮怪自己，选择困难也怪自己，不如让程序背锅。
@@ -77,6 +78,7 @@ Cherry Studio → 设置 → MCP 服务器 → 导入这段 JSON（把路径换�
 # 🍵 Man! What Tea Today? · tea-planner MCP
 
 > **With no reason to hold a bowl of tea, I send it to those who love tea.** — Bai Juyi
+> 
 > **Brood not over the old country with old friends; light a new fire and try the new tea. Poetry and wine, while time is still ours.** — Su Shi
 
 Here's how it started: the tea collection kept growing until opening the cabinet meant five minutes of blank staring, followed by grabbing whichever box was closest. Tea getting damp? My fault. Choice paralysis? Also my fault. So I made the program take the blame.
