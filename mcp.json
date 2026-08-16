@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "tea-planner": {
+      "command": "python",
+      "args": [
+        "C:\\your\\path\\tea-planner\\tea_planner.py"
+      ],
+      "env": {},
+      "description": "今天喝什么：壶泡一泡·茶水分离·107款库存软权重随机推荐（含冷泡/复盘/壶容量）"
+    }
+  }
+}
