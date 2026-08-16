@@ -1,4 +1,4 @@
-# 🍵 今天喝什么 · tea-planner MCP
+# 🍵 今天喝什么茶 · tea-planner MCP
 
 > **无由持一碗，寄与爱茶人。** —— 白居易
 > 
