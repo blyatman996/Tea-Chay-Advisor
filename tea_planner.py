@@ -748,7 +748,8 @@ def recommend(datetime_str: str = "", randomness: float = 0.6, count: int = 1, m
         w_before = next(w for w, t in scored if t is tea)
         eff = _effective(tea)
         mark = " ★已调校" if _has_override(tea["id"]) else ""
-        rinse = f"{eff['rinse']}秒润茶" if eff["rinse"] else "无需润茶"
+        pw = _prewash_of(tea)
+        rinse = f"洗茶L{pw}" if pw else (f"{eff['rinse']}秒润茶" if eff["rinse"] else "无需润茶")
         lines.append("")
         lid = _lid_of(tea)
         lid_cn = "盖盖" if lid else "开盖"
@@ -759,7 +760,6 @@ def recommend(datetime_str: str = "", randomness: float = 0.6, count: int = 1, m
                 f"   投茶 {g_disp:g}g ｜ 水温 {eff['t']}℃ ｜ 浸泡 {eff['m']:.1f}分钟 ｜ {rinse} ｜ {lid_cn}泡 ｜ 茶水比约 1:{pot/g_disp:.0f}"
             )
         if eff["m"]:
-            pw = _prewash_of(tea)
             if pw > 0:
                 op = f"   操作：温壶 → 投茶 → {PREWASH_PLANS[pw]} → 注满{pot}ml → {lid_cn} → 计时 → 到点一次性出汤（茶水分离）"
             else:
@@ -775,7 +775,7 @@ def recommend(datetime_str: str = "", randomness: float = 0.6, count: int = 1, m
         if tea["tip"]:
             lines.append(f"   💡 {tea['tip']}")
     lines.append("")
-    lines.append("喝完后对我说「我喝了{茶名}」（或让我调用 record 记录），接下来几天它会自动降权，换别的茶翻牌。")
+    lines.append(f"喝完后对我说「我喝了{picked[0]['name']}」（或让我调用 record 记录），接下来几天它会自动降权，换别的茶翻牌。")
     return "\n".join(lines)
 
 
@@ -892,7 +892,7 @@ def _add_single(key: str, category: str = "", note: str = "", g: float = 0.0, te
     st.setdefault("custom_teas", []).append(tea)
     _save_state(st)
     return (f"✅ 已入库：{tea['name']}（{tea['cat']}｜{tea['note']}）｜ {tea['g']}g/{tea['t']}℃/{tea['m']:.1f}min"
-            f"{('｜润茶%d秒' % tea['rinse']) if tea['rinse'] else ''}｜库存现共 {len(_all_teas())} 款")
+            f"{('｜润茶%d秒' % tea['rinse']) if tea['rinse'] else ''} ｜库存现共 {len(_all_teas())} 款")
 
 
 @mcp.tool()
@@ -1073,7 +1073,7 @@ def coldbrew_recommend(datetime_str: str = "", randomness: float = 0.6, count: i
             if tip:
                 lines.append(f"   💡 {tip}")
     lines.append("")
-    lines.append("冷泡喝完后说「我喝了{茶名}」同样计入疲劳降权。")
+    lines.append(f"冷泡喝完后说「我喝了{picked[0]['name']}」同样计入疲劳降权。")
     return "\n".join(lines)
 
 
