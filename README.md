@@ -23,27 +23,27 @@
 
 ## 部署（Cherry Studio，两分钟）
 
-需要 Python 3.10+：
+需要 uv（自带 uvx）：
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → 设置 → MCP 服务器 → 导入这段 JSON（把路径换成你的）：
+Cherry Studio → 设置 → MCP 服务器 → 导入这段 JSON：
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-打开开关，工具列表出现 11 个工具即成功。Windows 用户注意：`command` 最好写 python.exe 全路径——`WindowsApps` 里那个 0 字节的商店占位符会把你送到微软商店，而不是茶汤。
+打开开关，工具列表出现 11 个工具即成功。`uvx` 会自动从 PyPI 拉取 `tea-chay-advisor`，不用再手动装 Python 依赖，也不用改本地路径。
 
 然后在相应位置部署SKILL.md
 
@@ -100,29 +100,29 @@ Thus this MCP living inside Cherry Studio — "What Tea Today?". It ships with b
 
 ## Deploy (Cherry Studio, two minutes)
 
-Requires Python 3.10+:
+Requires uv (which provides uvx):
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → Settings → MCP Servers → Import this JSON (swap in your own path):
+Cherry Studio → Settings → MCP Servers → Import this JSON:
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-Flip the switch, and once 11 tools show up you're done. Windows users: write the full path to python.exe — the 0-byte store stub in `WindowsApps` will send you to the Microsoft Store, not to tea.
+Flip the switch, and once 11 tools show up you're done. `uvx` automatically pulls `tea-chay-advisor` from PyPI, so there's no manual `pip install` and no local path to configure.
 
-Prefer not to install Python? Drop `SKILL.md` into Cherry Studio's Skills folder for a prompt-only fallback (no persistence, but works out of the box).
+Prefer not to use uv? Drop `SKILL.md` into Cherry Studio's Skills folder for a prompt-only fallback (no persistence, but works out of the box).
 
 ## Three steps after install
 
@@ -177,29 +177,29 @@ Everything lives in `state.json` next to the script. Back up that one file and y
 
 ## 配備（Cherry Studio、2分）
 
-Python 3.10以上ガ必要：
+uv（uvxヲ含ム）ガ必要：
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → 設定 → MCPサーバー → 此ノJSONヲ取込（經路ハ自分ノ環境ニ置キ換ヘ）：
+Cherry Studio → 設定 → MCPサーバー → 此ノJSONヲ取込：
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-開閉器ヲ入レニシ、道具一覽ニ11箇ノ道具ガ表示サレレバ成功。Windowsユーザーヘノ注意：`command` ニハ python.exe ノ完全經路ヲ書ク事。`WindowsApps` 内ノ0バイトノストア用スタブハ、御茶デハナク Microsoft Store ヘ連レテ行ッテ仕舞ウ。
+開閉器ヲ入レニシ、道具一覽ニ11箇ノ道具ガ表示サレレバ成功。`uvx` ガ PyPI カラ自動的ニ `tea-chay-advisor` ヲ引キ寄セ、手動ノ `pip install` モ經路ノ設定モ不要ナリ。
 
-Pythonヲ入レタクナイ場合ハ、`SKILL.md` ヲ Cherry Studio ノ Skills フォルダニ入レルト、指示文ノミノ代替手段ガ使ヘル（永續化ハサレナイガ、直グ使ヘル）。
+uvヲ使ヒタクナイ場合ハ、`SKILL.md` ヲ Cherry Studio ノ Skills フォルダニ入レルト、指示文ノミノ代替手段ガ使ヘル（永續化ハサレナイガ、直グ使ヘル）。
 
 ## 導入後3手順
 
@@ -254,29 +254,29 @@ Pythonヲ入レタクナイ場合ハ、`SKILL.md` ヲ Cherry Studio ノ Skills �
 
 ## デプロイ（Cherry Studio、2ミニッツ）
 
-Python 3.10+ ガ イル：
+uv（uvx モ アル）ガ イル：
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → セッティング → MCPサーバー → コノ JSON ヲ インポート（パス ワ ユア ノ ニ リプレイス）：
+Cherry Studio → セッティング → MCPサーバー → コノ JSON ヲ インポート：
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-スイッチ オン ニ シテ、ツールリスト ニ 11コ アピア シタラ サクセス。Windows ノ ヒト ヘ ノ アテンション：`command` ニ ワ python.exe ノ フルパス ヲ ライト スル コト。`WindowsApps` ノ ナカ ノ ゼロバイト ノ ストアスタブ ワ、ティー ジャ ナクテ Microsoft Store ニ テイク シチャウ。
+スイッチ オン ニ シテ、ツールリスト ニ 11コ アピア シタラ サクセス。`uvx` ガ PyPI カラ オート デ `tea-chay-advisor` ヲ ゲット スル カラ、ジブン ノ パス モ pip モ イラナイ。
 
-Python インストール シタクナイ ヒト ワ、`SKILL.md` ヲ Cherry Studio ノ Skills フォルダ ニ パット スレバ、プロンプトオンリー ノ フォールバック ガ ユーズ デキル（パーシステンス ハ ナイ ケド、アウトオブボックス デ ユーズ デキル）。
+uv ヲ ツカイタクナイ ヒト ワ、`SKILL.md` ヲ Cherry Studio ノ Skills フォルダ ニ パット スレバ、プロンプトオンリー ノ フォールバック ガ ユーズ デキル（パーシステンス ハ ナイ ケド、アウトオブボックス デ ユーズ デキル）。
 
 ## インストール ノ アト 3ステップ
 
@@ -331,27 +331,27 @@ Python インストール シタクナイ ヒト ワ、`SKILL.md` ヲ Cherry Stu
 
 ## 배포(部署) (Cherry Studio, 2분(分))
 
-Python 3.10+ 필요(必要):
+uv(uvx 포함(包含)) 필요(必要):
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → 설정(設定) → MCP 서버(server) → 이 JSON(제이슨) 가져오기 (경로(經路)를 본인 것으로 바꾸세요):
+Cherry Studio → 설정(設定) → MCP 서버(server) → 이 JSON(제이슨) 가져오기:
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-스위치를 켜고 도구(道具) 목록(目錄)에 11개 도구(道具)가 나타나면 성공(成功)입니다. Windows 사용자(使用者)는 주의(注意): `command`에 python.exe 전체 경로(全體 經路)를 쓰는 것이 좋습니다 — `WindowsApps` 안의 0바이트 스토어 자리표시자(placeholder)는 당신을 마이크로소프트 스토어로 보내지, 차(茶)로 보내지 않습니다.
+스위치를 켜고 도구(道具) 목록(目錄)에 11개 도구(道具)가 나타나면 성공(成功)입니다. `uvx`가 PyPI에서 `tea-chay-advisor`를 자동(自動)으로 가져오므로, 수동(手動) pip 설치(設置)도 로컬 경로(經路) 설정(設定)도 필요(必要) 없습니다.
 
 그런 다음 해당(該當) 위치(位置)에 SKILL.md를 배포(部署)하세요.
 
@@ -408,29 +408,29 @@ Thế là có MCP này treo trên Cherry Studio —— 「Hôm nay uống gì」
 
 ## Triển khai（展開） (Cherry Studio, hai phút)
 
-Cần Python 3.10+:
+Cần uv (có sẵn uvx):
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → Cài đặt → MCP Servers → Nhập đoạn JSON này (đổi đường dẫn（路引） thành của bạn):
+Cherry Studio → Cài đặt → MCP Servers → Nhập đoạn JSON này:
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-Bật công tắc（工則）, danh sách（名冊） công cụ（工具） xuất hiện（出現） 11 công cụ（工具） là thành công（成功）. Người dùng Windows lưu ý（留意）: `command` tốt nhất nên ghi đường dẫn（路引） đầy đủ của python.exe —— cái stub 0 byte trong `WindowsApps` sẽ đưa bạn đến Microsoft Store, chứ không phải chén trà（茶）.
+Bật công tắc（工則）, danh sách（名冊） công cụ（工具） xuất hiện（出現） 11 công cụ（工具） là thành công（成功）. `uvx` tự động（自動） lấy `tea-chay-advisor` từ PyPI, nên không cần cài pip thủ công（手動） cũng không cần sửa đường dẫn（路引） cục bộ.
 
-Không muốn cài Python? Thả `SKILL.md` vào thư mục（書目） Skills của Cherry Studio để dùng bản fallback chỉ chạy prompt (không lưu trạng thái（狀態）, nhưng dùng được ngay).
+Không muốn dùng uv? Thả `SKILL.md` vào thư mục（書目） Skills của Cherry Studio để dùng bản fallback chỉ chạy prompt (không lưu trạng thái（狀態）, nhưng dùng được ngay).
 
 ## Ba bước sau khi cài
 
@@ -484,29 +484,29 @@ Mọi dữ liệu（資料） đều ghi trong `state.json` cạnh script, sao l
 
 ## 部署法（Cherry Studio，頃刻可成）
 
-須 Python 3.10 以上：
+須 uv（內含 uvx）：
 
 ```bash
-pip install "mcp[cli]"
+uvx tea-chay-advisor
 ```
 
-Cherry Studio → 設置 → MCP 服務器 → 導入此 JSON（路徑易以君之實徑）：
+Cherry Studio → 設置 → MCP 服務器 → 導入此 JSON：
 
 ```json
 {
   "mcpServers": {
     "tea-planner": {
-      "command": "python",
-      "args": ["C:\\your\\path\\tea-planner\\tea_planner.py"],
+      "command": "uvx",
+      "args": ["tea-chay-advisor"],
       "env": {}
     }
   }
 }
 ```
 
-啟其開關，工具列表現十一器即成功。Windows 用者慎之：`command` 宜書 python.exe 全徑——`WindowsApps` 中零字節之商店佔位符，將導君至微軟商店，而非茶湯。
+啟其開關，工具列表現十一器即成功。`uvx` 自 PyPI 自動取 `tea-chay-advisor`，無須手動 pip，亦無須配置本機路徑。
 
-復於相應處部署 `SKILL.md`。不願裝設 Python 者，亦可置 `SKILL.md` 於 Cherry Studio 之 Skills 目錄，徒以提示詞權充（無持久之功，然開箱即用）。
+復於相應處部署 `SKILL.md`。不願用 uv 者，亦可置 `SKILL.md` 於 Cherry Studio 之 Skills 目錄，徒以提示詞權充（無持久之功，然開箱即用）。
 
 ## 初用三步
 
