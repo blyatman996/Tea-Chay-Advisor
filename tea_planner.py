@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import random
 import re
 from datetime import date, datetime, timedelta
@@ -43,7 +44,16 @@ except ImportError:
         from fastmcp import FastMCP as FastMCPCompat              # 独立 fastmcp 包
 
 BASE = Path(__file__).resolve().parent
-STATE_FILE = BASE / "state.json"
+
+# 状态文件：优先使用环境变量 TEA_PLANNER_STATE；否则放用户目录，便于 uvx/云托管。
+# 兼容旧版：脚本旁边已有 state.json 时，继续沿用旧文件（本地迁移友好）。
+_TEA_STATE_ENV = os.environ.get("TEA_PLANNER_STATE", "").strip()
+if _TEA_STATE_ENV:
+    STATE_FILE = Path(_TEA_STATE_ENV)
+else:
+    STATE_FILE = Path.home() / ".tea-chay-advisor" / "state.json"
+    if (BASE / "state.json").exists():
+        STATE_FILE = BASE / "state.json"
 
 mcp = FastMCPCompat("tea-planner")  # 兼容 mcp 2.x / 1.x / 独立 fastmcp
 
@@ -632,6 +642,7 @@ def _g_for_cold(base_g: float) -> float:
 
 
 def _save_state(s: dict) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     STATE_FILE.write_text(json.dumps(s, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
@@ -1278,5 +1289,10 @@ def review(name: str, feedback: str = "", mode: str = "hot", reset: bool = False
             f"   下次冷泡推荐将使用新参数；「重置{tea['name']}」恢复默认。")
 
 
-if __name__ == "__main__":
+def main():
+    """Console entry point for uvx / PyPI package."""
     mcp.run(transport="stdio")
+
+
+if __name__ == "__main__":
+    main()
